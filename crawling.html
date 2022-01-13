@@ -5,26 +5,28 @@
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-
+    <style>
+        #crawl_list{
+            display: none;
+        }
+    </style>
     <script>
         $(document).ready(function () {
-            {#getUrl()#}
         });
 
-        function getUrl() {
-            $('#read_lists').empty()
 
-            let temp_html = ''
-            temp_html = `{% for list in lists %}
-                                <div class= "crawling_url" > {{ list['url'] }} < /div>
-                                <div class="crawling_title">{{ list['title'] }}</div>
-                                <div class="crawling_content">{{ list['content'] }}</div>
-                                <div class="crawling_hashtag">{{ list['tag'] }}</div>
-                                <img src="{{ list['img'] }}"> </img>
-                            {% endfor %}`
-            $('#read_lists').append(temp_html)
-            $('#read_lists').show()
-        }
+        function getUrl(){
+            console.log('ji')
+            let crawl_list = document.getElementById('crawl_list')
+            if ( crawl_list.style.display === 'none' ){
+
+                crawl_list.style.display= 'block';
+            }
+            else {
+                crawl_list.style.display = 'none';
+            }
+         }
+        
     </script>
 </head>
 <body>
@@ -41,28 +43,31 @@
             <div class="crawling_img"></div>
         </div>
         <button class="btn_recommend" onclick="getUrl()">일회용 컵 줄이기</button>
-
-        <div>
-
-
-            <div id="read_lists" class="crawl_right">
-
-                {#            {% for list in lists %}#}
-                {#                <div class="crawling_url">{{ list['url'] }}</div>#}
-                {#                <div class="crawling_title">{{ list['title'] }}</div>#}
-                {#                <div class="crawling_content">{{ list['content'] }}</div>#}
-                {#                <div class="crawling_hashtag">{{ list['tag'] }}</div>#}
-                {#                <img src="{{ list['img'] }}"> </img>#}
-                {#            {% endfor %}#}
+        <div class="crawling_group">
+            <div class="crawl_left">
+                <div class="crawling_img"></div>
             </div>
-            <div>
+            <div class="crawl_list">
+                {% for list in lists %}
 
+                    <div class="crawl_right">
+                        <div class="crawling_url">{{ list['url'] }}</div>
+                        <div class="crawling_title">{{ list['title'] }}</div>
+                        <div class="crawling_content">{{ list['content'] }}</div>
+                        <div class="crawling_hashtag">{{ list['tag'] }}</div>
+                        <img src="{{ list['img'] }}" alt="">
+                    </div>
+
+                {% endfor %}
             </div>
         </div>
-        <div class="footer">
-            <button class="review"></button>
-            <button class="crawling"></button>
-            <button class="category"></button>
-        </div>
+    </div>
+    <div class="footer">
+        <button class="review"></button>
+        <button class="crawling"></button>
+        <button class="category"></button>
+    </div>
+
+
 </body>
 </html>
