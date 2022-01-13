@@ -7,18 +7,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <script>
+        $(document).ready(function () {
+            getUrl()
+        });
 
         function getUrl(){
-            let urlstr = 'https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%9D%BC%ED%9A%8C%EC%9A%A9+%EC%BB%B5+%EC%A4%84%EC%9D%B4%EA%B8%B0';
+            {#let urlstr = 'https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%9D%BC%ED%9A%8C%EC%9A%A9+%EC%BB%B5+%EC%A4%84%EC%9D%B4%EA%B8%B0';#}
+            // console.log(urlstr)
+            // let url = new URL(urlstr)['href']
             {#console.log(urlstr)#}
-            {#let url = new URL(urlstr)['href']#}
-
             $.ajax({
                 type: 'GET',
                 url: '/search',
-                data: {search_give: urlstr},
+                {#data: {search_give: urlstr},#}
+                data: {},
                 success: function (response) {
                     // alert(response['msg']);
+                    console.log(response)
 
                 }
             })
