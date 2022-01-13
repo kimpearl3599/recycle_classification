@@ -8,55 +8,61 @@
 
     <script>
         $(document).ready(function () {
-            getUrl()
+            {#getUrl()#}
         });
 
-        function getUrl(){
-            {#let urlstr = 'https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%9D%BC%ED%9A%8C%EC%9A%A9+%EC%BB%B5+%EC%A4%84%EC%9D%B4%EA%B8%B0';#}
-            // console.log(urlstr)
-            // let url = new URL(urlstr)['href']
-            {#console.log(urlstr)#}
-            $.ajax({
-                type: 'GET',
-                url: '/search',
-                {#data: {search_give: urlstr},#}
-                data: {},
-                success: function (response) {
-                    // alert(response['msg']);
-                    console.log(response)
+        function getUrl() {
+            $('#read_lists').empty()
 
-                }
-            })
+            let temp_html = ''
+            temp_html = `{% for list in lists %}
+                                <div class= "crawling_url" > {{ list['url'] }} < /div>
+                                <div class="crawling_title">{{ list['title'] }}</div>
+                                <div class="crawling_content">{{ list['content'] }}</div>
+                                <div class="crawling_hashtag">{{ list['tag'] }}</div>
+                                <img src="{{ list['img'] }}"> </img>
+                            {% endfor %}`
+            $('#read_lists').append(temp_html)
+            $('#read_lists').show()
         }
-
     </script>
 </head>
 <body>
-    <div class="header">
-        <button class="btn_camera"></button>
-        <div id="logo"></div>
-        <button class="btn_menu_bar"></button>
-    </div>
-    <div class="container">
-        <p>추천검색어</p>
-        <button class="btn_recommend" onclick="getUrl()">일회용 컵 줄이기</button>
-        <div class="crawling_group">
-            <div class="crawl_left">
-                <div class="crawling_img"></div>
-            </div>
-            <div class="crawl_right">
-                <div class="crawling_url"></div>
-                <div class="crawling_title"></div>
-                <div class="crawling_content"></div>
-                <div class="crawling_hashtag"></div>
-            </div>
+<div class="header">
+    <button class="btn_camera"></button>
+    <div id="logo"></div>
+    <button class="btn_menu_bar"></button>
+</div>
+<div class="container">
+    <p>추천검색어</p>
 
+    <div class="crawling_group">
+        <div class="crawl_left">
+            <div class="crawling_img"></div>
         </div>
-    </div>
-    <div class="footer">
-        <button class="review"></button>
-        <button class="crawling"></button>
-        <button class="category"></button>
-    </div>
+        <button class="btn_recommend" onclick="getUrl()">일회용 컵 줄이기</button>
+
+        <div>
+
+
+            <div id="read_lists" class="crawl_right">
+
+                {#            {% for list in lists %}#}
+                {#                <div class="crawling_url">{{ list['url'] }}</div>#}
+                {#                <div class="crawling_title">{{ list['title'] }}</div>#}
+                {#                <div class="crawling_content">{{ list['content'] }}</div>#}
+                {#                <div class="crawling_hashtag">{{ list['tag'] }}</div>#}
+                {#                <img src="{{ list['img'] }}"> </img>#}
+                {#            {% endfor %}#}
+            </div>
+            <div>
+
+            </div>
+        </div>
+        <div class="footer">
+            <button class="review"></button>
+            <button class="crawling"></button>
+            <button class="category"></button>
+        </div>
 </body>
 </html>

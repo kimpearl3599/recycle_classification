@@ -40,8 +40,10 @@ def crawling():
     soup = BeautifulSoup(data.text, 'html.parser')
 
     search = soup.select('#main_pack > section > div > div._list > panel-list > div > more-contents > div > ul > li')
-    print(search)
+    # print(search)
     # url title content hashtag를 크롤링 해온다.
+
+    lists = []
     for i in search:
         url = i.select_one('div.total_wrap.api_ani_send > div > a')
         content = i.select_one('div.total_wrap.api_ani_send > div > div.total_group').text.strip()
@@ -53,12 +55,16 @@ def crawling():
         if img is None:
             continue
 
-        url_list = url['href'], url.text, content, tag.text, img['src']
-        # print(url_list)
-        lists = list(url_list)
-        # print()
+        url_list = {'url': url['href'], 'title': url.text, 'content': content, 'tag' : tag.text, 'img': img['src']}
+        # print("url_list :\n",url_list)
+        lists.append(url_list)
+        # lists += url_list
 
-        return render_template('crawling.html', lists=lists)
+        # print(url_list)
+        # print(len(lists))
+    print(lists)
+    return render_template('crawling.html', lists=lists)
+
 
 
 # ---------------------------------------------------------------
