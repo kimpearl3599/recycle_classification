@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>지구나이 댓글 캠페인</title>
+
+    <meta property="og:title" content=""/>
+    <meta property="og:description" content=""/>
+    <meta property="og:image" content=""/>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--파비콘-->
+    <link rel=" shortcut icon" href="">
+    <link rel="icon" href="">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <script>
+        // 새로고침할때마다 Review list 보여주는 함수 실행
+        $(document).ready(function () {
+            show_review()
+        })
+
+        // 응원댓글작성 <-> 접어두기
+        function openclose() {
+            if ($(".review_box").css("display") == 'block') {
+                $(".review_box").hide();
+                $(".btn_open_close").text('응원댓글작성');
+
+            } else {
+                $(".review_box").show();
+                $(".btn_open_close").text('접어두기');
+            }
+        }
+
+        // 댓글등록하기 버튼으로 nickname, comment, password 값을 ajax를 통해 API로 보내줌
+        function review_post() {
+            let nickname = $('#nickname').val()
+            let comment = $('#comment').val()
+            let password = $('#password').val()
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/review',
+                data: {'nickname_give': nickname, 'comment_give': comment, 'password_give': password},
+                success: function (response) {
+                    alert(response['msg']);
+                    alert("댓글 작성 완료");
+                    window.location.reload()
+                }
+            })
+        }
+
+        // 작성된 review를 api를 통해 DB에서 response로 받아 temp_html로 보여줌
+        function show_review() {
+            $.ajax({
+                type: "GET",
+                url: "/api/review",
+                data: {},
+                success: function (response) {
+                    $('.review_list').empty()
+
+                    let reviews = response['all_reviews']
+
+                    for (let i = 0; i < reviews.length; i++) {
+                        let id = reviews[i]['id']
+                        let nickname = reviews[i]['nickname']
+                        let comment = reviews[i]['comment']
+
+                        //수정, 삭제 버튼 클릭시 값을 받아와야하는 부분의 id 혹은 class 값에 ObjectId를 추가해줌
+                        // 버튼클릭시 해당 review_box안에서만 동작해야 함으로 동일하게 ObjectId를 추가해줌
+                        let temp_html = `<div class="review_list_box">
+                                            <div class="reviewer">${nickname}</div>
+                                            <div class="${id}_comment">${comment}</div>
+
+                                            <textarea style="display:none" name="" id="${id}_edit_area" cols="30" rows="10"></textarea>
+
+                                            <div class="${id}_list_btn_group">
+                                                <div style="display:none" class="${id}_confirm_btn_group">
+                                                    <p>비밀번호</p>
+                                                    <input id="${id}_confirm_pw_input" type="password" placeholder="댓글작성시 입력했던 비밀번호로 수정 및 삭제 할 수 있습니다.">
+                                                    <button id="${id}_confirm_pw_btn" class="btn_confirm_pw">확인</button>
+                                                </div>
+
+                                                <button id="${id}_update" onclick="review_update('update', '${id}')" class="btn_review_update">수정</button>
+                                                <button id="${id}_delete" onclick="review_update('delete', '${id}')" class="btn_review_delete">삭제</button>
+                                            </div>
+                                        </div>
+                                        `
+
+                        $('.review_list').append(temp_html)
+
+                    }
+                }
+            })
+        }
+
+
+        // 수정, 삭제 버튼을 review_update 버튼하나로 구현하여 타입을 다르게 지정하는 병렬제어 transac
+        // 수정 혹은 삭제버튼을 클릭하면 비밀번호입력 버튼그룹이 숨어있다가 나타나게 설정
+        function review_update(type, id) {
+            let targetApi = ''
+            if ($(`.${id}_confirm_btn_group`).is(':visible') == true) {
+                $(`.${id}_confirm_btn_group`).hide();
+            } else {
+                $(`.${id}_confirm_btn_group`).show();
+            }
+
+            // type이 'update'면 update api로 연결하고 ObjectId값을 인자받아 reviewEdit 함수 실행
+            if (type == "update") {
+                targetApi = "/api/update"
+                reviewEdit(id)
+
+            // type이 'delete'면 delete api로 연결하여 삭제진행
+            } else if (type == "delete") {
+                targetApi = "/api/delete"
+            }
+
+            // 비밀번호 입력 후 확인버튼 클릭 시 reviewEditTransac 함수 실행
+            $(`#${id}_confirm_pw_btn`).click(function () {
+                reviewEditTransac(id, targetApi)
+                return;
+            })
+        }
+
+        // 확인버튼 클릭 시 수정된 comment와 입력한 pw값을 targetApi(어떤 버튼을 클릭했느냐에 따라 type이 달라짐)에 전달
+        // 수정 및 삭제버튼 클릭 시 list를 새로고침하여 수정되거나 삭제된 상황이 반영될 수 있도록함
+        function reviewEditTransac(id, targetApi) {
+            let confirmPassword = $(`#${id}_confirm_pw_input`).val()
+            let editComment = $(`#${id}_edit_area`).val()
+            console.log(confirmPassword)
+            console.log(editComment)
+            $.ajax({
+                type: "POST",
+                url: targetApi,
+                data: {id_give: id, confirmPassword_give: confirmPassword, editComment_give: editComment},
+                success: function (response) {
+                    alert(response["msg"]);
+                    show_review();
+                }
+            })
+        }
+
+
+        // 수정할때 edit_area에 기존에 작성한 comment를 불러와 수정할 수 있도록함
+        // edit_area가 실행되면 기존의 comment는 숨기고, 수정버튼의 이름을 '닫기'로 변경
+        function reviewEdit(id) {
+            let originContent = $(`.${id}_comment`).text();
+            console.log(originContent)
+            if ($(`#${id}_edit_area`).css("display") == "none") {
+                $(`.${id}_comment`).hide();
+                $(`#${id}_edit_area`).show();
+                $(`#${id}_edit_area`).val(originContent);
+                $(`#${id}_update`).text("닫기");
+            } else {
+                $(`.${id}_comment`).show();
+                $(`#${id}_edit_area`).hide();
+                $(`#${id}_update`).text("수정");
+            }
+
+        }
+    </script>
+
+</head>
+<body>
+<div class="header">
+    <button class="btn_camera">카메라</button>
+    <div id="logo"></div>
+    <button class="btn_menu_bar">목록</button>
+</div>
+<div class="container">
+    <div class="earth_img">
+        <div class="count_review"></div>
+    </div>
+    <button class="btn_open_close" onclick="openclose()">접어두기</button>
+    <div class="review_box">
+        <input id="nickname" type="text" placeholder="nickname">
+        <input id="comment" type="text" placeholder="comment">
+        <input id="password" type="password" placeholder="password">
+        <button onclick="review_post()" class="review_post">댓글등록하기</button>
+    </div>
+
+
+    <div class="review_list">
+        <!--        temp_html 구현자리-->
+
+    </div>
+</div>
+<div class="footer">
+    <button class="review">댓글 캠페인</button>
+    <button class="crolling">대체품 알아보기</button>
+    <button class="category">How To Recycle</button>
+</div>
+</body>
+</html>
