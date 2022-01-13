@@ -1,14 +1,14 @@
 import urllib
 from urllib.request import urlopen
 
-from flask import Flask, render_template
+# from bson import ObjectId
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 import certifi
 import requests
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 
 app = Flask(__name__)
-
 
 ca = certifi.where()
 # client = MongoClient('mongodb+srv://test:sparta@cluster0.p2cn0.mongodb.net/Cluster0?retryWrites=true&w=majority')
@@ -26,20 +26,21 @@ db = client.dbsparta
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 # 네이버 검색창에 검색하고 싶은 것을 검색후 url을 입력하여 할당함.
 @app.route("/search", methods=['GET'])
 def crawling():
-    search_url = urllib.request.Request(url='search_give')
-    print(search_url)
-    with urllib.request.urlopen(search_url) as response:
-        the_page = response.read()
+    # search_url = urllib.request.urlopen('search_give')
+    search_url = 'https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%9D%BC%ED%9A%8C%EC%9A%A9+%EC%BB%B5+%EC%A4%84%EC%9D%B4%EA%B8%B0'
+    data = requests.get(search_url, headers=headers)
 
-    data = requests.get(the_page, headers=headers)
     soup = BeautifulSoup(data.text, 'html.parser')
 
     search = soup.select('#main_pack > section > div > div._list > panel-list > div > more-contents > div > ul > li')
-
+    print(search)
     # url title content hashtag를 크롤링 해온다.
     for i in search:
         url = i.select_one('div.total_wrap.api_ani_send > div > a')
@@ -53,9 +54,10 @@ def crawling():
             continue
 
         url_list = url['href'], url.text, content, tag.text, img['src']
-
+        # print(url_list)
         lists = list(url_list)
         # print()
+
         return render_template('crawling.html', lists=lists)
 
 
