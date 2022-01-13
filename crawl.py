@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 ca = certifi.where()
 # client = MongoClient('mongodb+srv://test:sparta@cluster0.p2cn0.mongodb.net/Cluster0?retryWrites=true&w=majority')
-client = MongoClient('mongodb+srv://test:sparta@cluster0.rtjyu.mongodb.net/Cluster0?retryWrites=true&w=majority',
+client = MongoClient('mongodb+srv://tmdgus5611:sparta@cluster0.rtjyu.mongodb.net/Cluster0?retryWrites=true&w=majority',
                      tlsCAFile=ca)
 db = client.dbsparta
 
@@ -30,6 +30,7 @@ headers = {
 def home():
     return render_template('home.html')
 
+
 # 네이버 검색창에 검색하고 싶은 것을 검색후 url을 입력하여 할당함.
 @app.route("/search", methods=['GET'])
 def crawling():
@@ -40,8 +41,9 @@ def crawling():
     soup = BeautifulSoup(data.text, 'html.parser')
 
     search = soup.select('#main_pack > section > div > div._list > panel-list > div > more-contents > div > ul > li')
-    print(search)
+    # print(search)
     # url title content hashtag를 크롤링 해온다.
+    lists = []
     for i in search:
         url = i.select_one('div.total_wrap.api_ani_send > div > a')
         content = i.select_one('div.total_wrap.api_ani_send > div > div.total_group').text.strip()
@@ -53,12 +55,18 @@ def crawling():
         if img is None:
             continue
 
-        url_list = url['href'], url.text, content, tag.text, img['src']
-        # print(url_list)
-        lists = list(url_list)
-        # print()
+        url_list = {'url': url['href'],
+                    'title': url.text,
+                    'content': content,
+                    'tag': tag.text,
+                    'img': img['src']}
 
-        return render_template('crawling.html', lists=lists)
+        lists.append(url_list)
+        # print(lists)
+
+        # print()
+    print(lists)
+    return render_template('crawling.html', lists=lists)
 
 
 # ---------------------------------------------------------------
