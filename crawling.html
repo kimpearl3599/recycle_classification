@@ -12,8 +12,8 @@
     </style>
     <script>
         $(document).ready(function () {
-            {#getUrl()#}
         });
+
 
         function getUrl(){
             console.log('ji')
@@ -26,17 +26,22 @@
                 crawl_list.style.display = 'none';
             }
          }
-
+        
     </script>
 </head>
 <body>
-    <div class="header">
-        <button class="btn_camera"></button>
-        <div id="logo"></div>
-        <button class="btn_menu_bar"></button>
-    </div>
-    <div class="container">
-        <p>추천검색어</p>
+<div class="header">
+    <button class="btn_camera"></button>
+    <div id="logo"></div>
+    <button class="btn_menu_bar"></button>
+</div>
+<div class="container">
+    <p>추천검색어</p>
+
+    <div class="crawling_group">
+        <div class="crawl_left">
+            <div class="crawling_img"></div>
+        </div>
         <button class="btn_recommend" onclick="getUrl()">일회용 컵 줄이기</button>
         <div class="crawling_group">
             <div class="crawl_left">
@@ -62,7 +67,6 @@
         <button class="crawling"></button>
         <button class="category"></button>
     </div>
-
 
 
 </body>

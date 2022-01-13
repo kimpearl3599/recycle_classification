@@ -26,10 +26,6 @@ db = client.dbsparta
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
 
-@app.route('/')
-def home():
-    return render_template('home.html')
-
 
 # 네이버 검색창에 검색하고 싶은 것을 검색후 url을 입력하여 할당함.
 @app.route("/search", methods=['GET'])
@@ -43,6 +39,8 @@ def crawling():
     search = soup.select('#main_pack > section > div > div._list > panel-list > div > more-contents > div > ul > li')
     # print(search)
     # url title content hashtag를 크롤링 해온다.
+
+
     lists = []
     for i in search:
         url = i.select_one('div.total_wrap.api_ani_send > div > a')
@@ -54,6 +52,7 @@ def crawling():
             continue
         if img is None:
             continue
+
 
         url_list = {'url': url['href'],
                     'title': url.text,
