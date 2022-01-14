@@ -2,159 +2,236 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>지구apa</title>
+    <meta property="og:title" content=""/>
+    <meta property="og:description" content=""/>
+    <meta property="og:image" content=""/>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+
+    <!--파비콘-->
+    <link rel=" shortcut icon" href="">
+    <link rel="icon" href="">
+    <!-- jQuery first, then Popper.js-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/main.css">
+
 
     <style>
-        #crawl_cup_list{
+        #crawl_cup_list {
             display: none;
         }
+
         #crawl_glass_list {
             display: none;
         }
+
         #crawl_upcycle_list {
             display: none;
         }
+
         #crawl_clothes_list {
             display: none;
         }
     </style>
     <script>
-        function get_cup_url(){
-            let crawl_list = document.getElementById('crawl_cup_list')
-            if ( crawl_list.style.display === 'none' ){
-                crawl_list.style.display = 'block';
-            }
-            else {
-                crawl_list.style.display = 'none';
-            }
-         }
-        function get_glass_url(){
-            let crawl_list = document.getElementById('crawl_glass_list')
-            if ( crawl_list.style.display === 'none' ){
-                crawl_list.style.display = 'block';
-            }
-            else {
-                crawl_list.style.display = 'none';
-            }
-        }
-        function get_upcycle_url(){
-            let crawl_list = document.getElementById('crawl_upcycle_list')
-            if ( crawl_list.style.display === 'none' ){
-                crawl_list.style.display = 'block';
-            }
-            else {
-                crawl_list.style.display = 'none';
+        function get_cup_url() {
+            let crawl_list_cup = document.getElementById('crawl_cup_list')
+            let crawl_list_glass = document.getElementById('crawl_glass_list')
+            let crawl_list_upcycle = document.getElementById('crawl_upcycle_list')
+            let crawl_list_clothes = document.getElementById('crawl_clothes_list')
+            if (crawl_list_cup.style.display === 'none') {
+                crawl_list_cup.style.display = 'block';
+                crawl_list_glass.style.display = 'none';
+                crawl_list_upcycle.style.display = 'none';
+                crawl_list_clothes.style.display = 'none';
+            } else {
+                crawl_list_cup.style.display = 'none';
+                crawl_list_glass.style.display = 'none';
+                crawl_list_upcycle.style.display = 'none';
+                crawl_list_clothes.style.display = 'none';
             }
         }
-        function get_cloth_url(){
-            let crawl_list = document.getElementById('crawl_clothes_list')
-            if ( crawl_list.style.display === 'none' ){
-                crawl_list.style.display = 'block';
+
+        function get_glass_url() {
+            let crawl_list_cup = document.getElementById('crawl_cup_list')
+            let crawl_list_glass = document.getElementById('crawl_glass_list')
+            let crawl_list_upcycle = document.getElementById('crawl_upcycle_list')
+            let crawl_list_clothes = document.getElementById('crawl_clothes_list')
+            if (crawl_list_glass.style.display === 'none') {
+                crawl_list_cup.style.display = 'none';
+                crawl_list_glass.style.display = 'block';
+                crawl_list_upcycle.style.display = 'none';
+                crawl_list_clothes.style.display = 'none';
+            } else {
+                crawl_list_cup.style.display = 'none';
+                crawl_list_glass.style.display = 'none';
+                crawl_list_upcycle.style.display = 'none';
+                crawl_list_clothes.style.display = 'none';
             }
-            else {
-                crawl_list.style.display = 'none';
+        }
+
+        function get_upcycle_url() {
+            let crawl_list_cup = document.getElementById('crawl_cup_list')
+            let crawl_list_glass = document.getElementById('crawl_glass_list')
+            let crawl_list_upcycle = document.getElementById('crawl_upcycle_list')
+            let crawl_list_clothes = document.getElementById('crawl_clothes_list')
+            if (crawl_list_upcycle.style.display === 'none') {
+                crawl_list_cup.style.display = 'none';
+                crawl_list_glass.style.display = 'none';
+                crawl_list_upcycle.style.display = 'block';
+                crawl_list_clothes.style.display = 'none';
+            } else {
+                crawl_list_cup.style.display = 'none';
+                crawl_list_glass.style.display = 'none';
+                crawl_list_upcycle.style.display = 'none';
+                crawl_list_clothes.style.display = 'none';
             }
+        }
+
+        function get_cloth_url() {
+            let crawl_list_cup = document.getElementById('crawl_cup_list')
+            let crawl_list_glass = document.getElementById('crawl_glass_list')
+            let crawl_list_upcycle = document.getElementById('crawl_upcycle_list')
+            let crawl_list_clothes = document.getElementById('crawl_clothes_list')
+            if (crawl_list_clothes.style.display === 'none') {
+                crawl_list_cup.style.display = 'none';
+                crawl_list_glass.style.display = 'none';
+                crawl_list_upcycle.style.display = 'none';
+                crawl_list_clothes.style.display = 'block';
+            } else {
+                crawl_list_cup.style.display = 'none';
+                crawl_list_glass.style.display = 'none';
+                crawl_list_upcycle.style.display = 'none';
+                crawl_list_clothes.style.display = 'none';
+            }
+        }
+
+        function go_review() {
+            window.location.reload()
+        }
+
+        function go_crawling() {
+            window.location.href = '/search'
+        }
+
+        function go_category() {
+            window.location.href = '/search'
         }
 
     </script>
 </head>
 <body>
-    <div class="header">
-        <button class="btn_camera"></button>
-        <div id="logo"></div>
-        <button class="btn_menu_bar"></button>
+<div class="header top">
+    <button class="btn_camera nav"></button>
+    <div id="logo"></div>
+    <button class="btn_menu_bar nav"></button>
+</div>
+<div class="container">
+    <p class="txt_title" style="text-align: center">추천검색어</p>
+    <div class="recommend_btn_group">
+        <button class="btn_recommend btn txt_hashtag" onclick="get_cup_url()">일회용 컵 줄이기</button>
+        <button class="btn_recommend btn txt_hashtag" onclick="get_glass_url()">유리병 재활용</button>
+        <button class="btn_recommend btn txt_hashtag" onclick="get_upcycle_url()">업사이클링</button>
+        <button class="btn_recommend btn txt_hashtag" onclick="get_cloth_url()">헌옷 재활용</button>
     </div>
-    <div class="container">
-        <p>추천검색어</p>
-        <button class="btn_recommend" onclick="get_cup_url()">일회용 컵 줄이기</button>
-        <button class="btn_recommend" onclick="get_glass_url()">유리병 재활용</button>
-        <button class="btn_recommend" onclick="get_upcycle_url()">업사이클링</button>
-        <button class="btn_recommend" onclick="get_cloth_url()">헌옷 재활용</button>
-
-        <div id="crawl_cup_list">
-            {% for list in cuplists %}
-            <div class="crawl_left">
-                <div class="crawling_img"><img src="{{ list['img'] }}" alt=" "></div>
-            </div>
-    {#            <div id="crawl_cup_list">#}
+    <div id="crawl_cup_list">
+        {% for list in cuplists %}
+            <div class="list_box">
+                <div class="crawl_left crawl_left_box">
+                    <div class="crawling_img crawl_left_box_img"><img src="{{ list['img'] }}" alt=" "></div>
+                </div>
                 <div class="crawl_right">
-                    <div class="crawling_title">
+                    <div class="crawling_title txt_title">
                         <a href="{{ list['url'] }}" target="_blank">
                             {{ list['title'] }}
                         </a>
                     </div>
-                    <div class="crawling_content">{{ list['content'] }}</div>
-                    <div class="crawling_hashtag">{{ list['tag'] }}</div>
-                </div>
+                    <div class="crawling_content txt_content">{{ list['content'] }}</div>
 
-            {% endfor %}
-        </div>
-        <div id="crawl_upcycle_list">
-            {% for list in upcyclelists %}
-            <div class="crawl_left">
-                <div class="crawling_img"><img src="{{ list['img'] }}" alt=" "></div>
+                    <div class="crawling_hashtag txt_tag">{{ list['tag'] }}</div>
+                </div>
             </div>
-    {#            <div id="crawl_cup_list">#}
-                <div class="crawl_right">
-                    <div class="crawling_title">
-                        <a href="{{ list['url'] }}" target="_blank">
-                            {{ list['title'] }}
-                        </a>
-                    </div>
-                    <div class="crawling_content">{{ list['content'] }}</div>
-                    <div class="crawling_hashtag">{{ list['tag'] }}</div>
-                </div>
 
-            {% endfor %}
-        </div>
-        <div id="crawl_glass_list">
-            {% for list in glasslists %}
-            <div class="crawl_left">
-                <div class="crawling_img"><img src="{{ list['img'] }}" alt=" "></div>
-            </div>
-    {#            <div id="crawl_cup_list">#}
-                <div class="crawl_right">
-                    <div class="crawling_title">
-                        <a href="{{ list['url'] }}" target="_blank">
-                            {{ list['title'] }}
-                        </a>
-                    </div>
-                    <div class="crawling_content">{{ list['content'] }}</div>
-                    <div class="crawling_hashtag">{{ list['tag'] }}</div>
-                </div>
-
-            {% endfor %}
-        </div>
-        <div id="crawl_clothes_list">
-            {% for list in clotheslists %}
-            <div class="crawl_left">
-                <div class="crawling_img"><img src="{{ list['img'] }}" alt=" "></div>
-            </div>
-    {#            <div id="crawl_cup_list">#}
-                <div class="crawl_right">
-                    <div class="crawling_title">
-                        <a href="{{ list['url'] }}" target="_blank">
-                            {{ list['title'] }}
-                        </a>
-                    </div>
-                    <div class="crawling_content">{{ list['content'] }}</div>
-                    <div class="crawling_hashtag">{{ list['tag'] }}</div>
-                </div>
-
-            {% endfor %}
-        </div>
-
-
-
-
+        {% endfor %}
     </div>
-    <div class="footer">
-        <button class="review"></button>
-        <button class="crawling"></button>
-        <button class="category"></button>
+    <div id="crawl_glass_list">
+        {% for list in glasslists %}
+            <div class="list_box">
+                <div class="crawl_left crawl_left_box">
+                    <div class="crawling_img crawl_left_box_img"><img src="{{ list['img'] }}" alt=" "></div>
+                </div>
+                <div class="crawl_right">
+                    <div class="crawling_title txt_title">
+                        <a href="{{ list['url'] }}" target="_blank">
+                            {{ list['title'] }}
+                        </a>
+                    </div>
+                    <div class="crawling_content txt_content">{{ list['content'] }}</div>
+
+                    <div class="crawling_hashtag txt_tag">{{ list['tag'] }}</div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <div id="crawl_upcycle_list">
+        {% for list in upcyclelists %}
+            <div class="list_box">
+                <div class="crawl_left crawl_left_box">
+                    <div class="crawling_img crawl_left_box_img"><img src="{{ list['img'] }}" alt=" "></div>
+                </div>
+                <div class="crawl_right">
+                    <div class="crawling_title txt_title">
+                        <a href="{{ list['url'] }}" target="_blank">
+                            {{ list['title'] }}
+                        </a>
+                    </div>
+                    <div class="crawling_content txt_content">{{ list['content'] }}</div>
+                    <div class="crawling_hashtag txt_tag">{{ list['tag'] }}</div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+    <div id="crawl_clothes_list">
+        {% for list in clotheslists %}
+            <div class="list_box">
+                <div class="crawl_left crawl_left_box">
+                    <div class="crawling_img crawl_left_box_img"><img src="{{ list['img'] }}" alt=" "></div>
+                </div>
+                <div class="crawl_right">
+                    <div class="crawling_title txt_title">
+                        <a href="{{ list['url'] }}" target="_blank">
+                            {{ list['title'] }}
+                        </a>
+                    </div>
+                    <div class="crawling_content txt_content">{{ list['content'] }}</div>
+                    <div class="crawling_hashtag txt_tag">{{ list['tag'] }}</div>
+                </div>
+            </div>
+
+        {% endfor %}
     </div>
 
+</div>
+
+<div class="footer bottom">
+    <button class="review nav" onclick="go_review()"></button>
+    <button class="crawling nav" onclick="go_crawling()"></button>
+    <button class="category nav" onclick="go_category()"></button>
+</div>
 </body>
 </html>
