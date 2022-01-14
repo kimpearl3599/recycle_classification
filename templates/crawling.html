@@ -6,29 +6,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
+    <style>
+        #crawl_list{
+            display: none;
+        }
+    </style>
     <script>
-        $(document).ready(function () {
-            getUrl()
-        });
+        {#$(document).ready(function () {#}
+        {# });#}
+
 
         function getUrl(){
-            {#let urlstr = 'https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%EC%9D%BC%ED%9A%8C%EC%9A%A9+%EC%BB%B5+%EC%A4%84%EC%9D%B4%EA%B8%B0';#}
-            // console.log(urlstr)
-            // let url = new URL(urlstr)['href']
-            {#console.log(urlstr)#}
-            $.ajax({
-                type: 'GET',
-                url: '/search',
-                {#data: {search_give: urlstr},#}
-                data: {},
-                success: function (response) {
-                    // alert(response['msg']);
-                    console.log(response)
-
-                }
-            })
-        }
-
+            console.log('ji')
+            let crawl_list = document.getElementById('crawl_list')
+            if ( crawl_list.style.display === 'none' ){
+                crawl_list.style.display = 'block';
+            }
+            else {
+                crawl_list.style.display = 'none';
+            }
+         }
+        
     </script>
 </head>
 <body>
@@ -44,13 +42,22 @@
             <div class="crawl_left">
                 <div class="crawling_img"></div>
             </div>
-            <div class="crawl_right">
-                <div class="crawling_url"></div>
-                <div class="crawling_title"></div>
-                <div class="crawling_content"></div>
-                <div class="crawling_hashtag"></div>
-            </div>
+            <div id="crawl_list">
+                {% for list in lists %}
 
+                    <div class="crawl_right">
+                        <div class="crawling_title">
+                            <a href="{{ list['url'] }}" target="_blank">
+                                {{ list['title'] }}
+                            </a>
+                        </div>
+                        <div class="crawling_content">{{ list['content'] }}</div>
+                        <div class="crawling_hashtag">{{ list['tag'] }}</div>
+                        <img src="{{ list['img'] }}" alt="">
+                    </div>
+
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="footer">
@@ -58,5 +65,6 @@
         <button class="crawling"></button>
         <button class="category"></button>
     </div>
+
 </body>
 </html>
