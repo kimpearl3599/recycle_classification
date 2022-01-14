@@ -40,8 +40,7 @@ def crawling():
     # print(search)
     # url title content hashtag를 크롤링 해온다.
 
-
-    lists = []
+    cup_lists = []
     for i in search:
         url = i.select_one('div.total_wrap.api_ani_send > div > a')
         content = i.select_one('div.total_wrap.api_ani_send > div > div.total_group').text.strip()
@@ -53,19 +52,116 @@ def crawling():
         if img is None:
             continue
 
-
         url_list = {'url': url['href'],
                     'title': url.text,
                     'content': content,
                     'tag': tag.text,
                     'img': img['src']}
 
-        lists.append(url_list)
+        cup_lists.append(url_list)
         # print(lists)
 
-        # print()
-    print(lists)
-    return render_template('crawling.html', lists=lists)
+    glasses_url = 'https://search.naver.com/search.naver?sm=tab_hty.top&where=view&query=%EC%9C%A0%EB%A6%AC%EB%B3%91+%EC%9E%AC%ED%99%9C%EC%9A%A9&oquery=%ED%97%8C%EC%98%B7+%EC%9E%AC%ED%99%9C%EC%9A%A9&tqi=hO%2BuJwp0Jy0ssi4OOhKssssssdV-261863&mode=normal'
+
+    glass_data = requests.get(glasses_url, headers=headers)
+
+    glass_soup = BeautifulSoup(glass_data.text, 'html.parser')
+
+    glasses_search = glass_soup.select(
+        '#main_pack > section > div > div._list > panel-list > div > more-contents > div > ul > li')
+    # print(search)
+    # url title content hashtag를 크롤링 해온다.
+
+    glass_lists = []
+    for glass in glasses_search:
+        url = glass.select_one('div.total_wrap.api_ani_send > div > a')
+        content = glass.select_one('div.total_wrap.api_ani_send > div > div.total_group').text.strip()
+        tag = glass.select_one('div.total_tag_area')
+        img = glass.select_one('div.total_wrap.api_ani_send > a > span> img')
+
+        if tag is None or tag.text is None:
+            continue
+        if img is None:
+            continue
+
+        glass_list = {'url': url['href'],
+                      'title': url.text,
+                      'content': content,
+                      'tag': tag.text,
+                      'img': img['src']}
+
+        glass_lists.append(glass_list)
+        # print(lists)
+
+
+    upcycling_url = 'https://search.naver.com/search.naver?sm=tab_sug.top&where=view&query=%EC%97%85%EC%82%AC%EC%9D%B4%ED%81%B4%EB%A7%81&oquery=%EC%B9%9C%ED%99%98%EA%B2%BD%EC%A0%9C%ED%92%88&tqi=hPvSDsp0YiRssv7ITo4sssssst0-473338&acq=djqtk&acr=1&qdt=0&mode=normal'
+    upcycle_data = requests.get(upcycling_url, headers=headers)
+
+    upcycle_soup = BeautifulSoup(upcycle_data.text, 'html.parser')
+
+    upcycling_search = upcycle_soup.select(
+        '#main_pack > section > div > div._list > panel-list > div > more-contents > div > ul > li')
+    # print(search)
+    # url title content hashtag를 크롤링 해온다.
+
+    upcycling_lists = []
+    for upcycle in upcycling_search:
+        url = upcycle.select_one('div.total_wrap.api_ani_send > div > a')
+        content = upcycle.select_one('div.total_wrap.api_ani_send > div > div.total_group').text.strip()
+        tag = upcycle.select_one('div.total_tag_area')
+        img = upcycle.select_one('div.total_wrap.api_ani_send > a > span> img')
+
+        if tag is None or tag.text is None:
+            continue
+        if img is None:
+            continue
+
+        upcycle_list = {'url': url['href'],
+                      'title': url.text,
+                      'content': content,
+                      'tag': tag.text,
+                      'img': img['src']}
+
+        upcycling_lists.append(upcycle_list)
+
+
+    clothes_url = 'https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%ED%97%8C%EC%98%B7%EC%9E%AC%ED%99%9C%EC%9A%A9'
+    clothes_data = requests.get(clothes_url, headers=headers)
+
+    cloth_soup = BeautifulSoup(clothes_data.text, 'html.parser')
+
+    clothes_search = cloth_soup.select(
+        '#main_pack > section > div > div._list > panel-list > div > more-contents > div > ul > li')
+    # print(search)
+    # url title content hashtag를 크롤링 해온다.
+
+    clothes_lists = []
+    for cloth in clothes_search:
+        url = cloth.select_one('div.total_wrap.api_ani_send > div > a')
+        content = cloth.select_one('div.total_wrap.api_ani_send > div > div.total_group').text.strip()
+        tag = cloth.select_one('div.total_tag_area')
+        img = cloth.select_one('div.total_wrap.api_ani_send > a > span> img')
+
+        if tag is None or tag.text is None:
+            continue
+        if img is None:
+            continue
+
+        clothes_list = {'url': url['href'],
+                        'title': url.text,
+                        'content': content,
+                        'tag': tag.text,
+                        'img': img['src']}
+
+        clothes_lists.append(clothes_list)
+
+
+
+
+
+
+    # print(lists)
+    return render_template('crawling.html', cuplists=cup_lists, glasslists=glass_lists, upcyclelists=upcycling_lists, clotheslists=clothes_lists)
 
 
 # ---------------------------------------------------------------
@@ -84,6 +180,7 @@ def crawling():
 # # 유리병 재활용
 # crawling(
 #     'https://search.naver.com/search.naver?sm=tab_hty.top&where=view&query=%EC%9C%A0%EB%A6%AC%EB%B3%91+%EC%9E%AC%ED%99%9C%EC%9A%A9&oquery=%ED%97%8C%EC%98%B7+%EC%9E%AC%ED%99%9C%EC%9A%A9&tqi=hO%2BuJwp0Jy0ssi4OOhKssssssdV-261863&mode=normal')
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

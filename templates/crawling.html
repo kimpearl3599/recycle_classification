@@ -7,18 +7,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <style>
-        #crawl_list{
+        #crawl_cup_list{
+            display: none;
+        }
+        #crawl_glass_list {
+            display: none;
+        }
+        #crawl_upcycle_list {
+            display: none;
+        }
+        #crawl_clothes_list {
             display: none;
         }
     </style>
     <script>
-        {#$(document).ready(function () {#}
-        {# });#}
-
-
-        function getUrl(){
-            console.log('ji')
-            let crawl_list = document.getElementById('crawl_list')
+        function get_cup_url(){
+            let crawl_list = document.getElementById('crawl_cup_list')
             if ( crawl_list.style.display === 'none' ){
                 crawl_list.style.display = 'block';
             }
@@ -26,7 +30,34 @@
                 crawl_list.style.display = 'none';
             }
          }
-        
+        function get_glass_url(){
+            let crawl_list = document.getElementById('crawl_glass_list')
+            if ( crawl_list.style.display === 'none' ){
+                crawl_list.style.display = 'block';
+            }
+            else {
+                crawl_list.style.display = 'none';
+            }
+        }
+        function get_upcycle_url(){
+            let crawl_list = document.getElementById('crawl_upcycle_list')
+            if ( crawl_list.style.display === 'none' ){
+                crawl_list.style.display = 'block';
+            }
+            else {
+                crawl_list.style.display = 'none';
+            }
+        }
+        function get_cloth_url(){
+            let crawl_list = document.getElementById('crawl_clothes_list')
+            if ( crawl_list.style.display === 'none' ){
+                crawl_list.style.display = 'block';
+            }
+            else {
+                crawl_list.style.display = 'none';
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -37,28 +68,87 @@
     </div>
     <div class="container">
         <p>추천검색어</p>
-        <button class="btn_recommend" onclick="getUrl()">일회용 컵 줄이기</button>
-        <div class="crawling_group">
+        <button class="btn_recommend" onclick="get_cup_url()">일회용 컵 줄이기</button>
+        <button class="btn_recommend" onclick="get_glass_url()">유리병 재활용</button>
+        <button class="btn_recommend" onclick="get_upcycle_url()">업사이클링</button>
+        <button class="btn_recommend" onclick="get_cloth_url()">헌옷 재활용</button>
+
+        <div id="crawl_cup_list">
+            {% for list in cuplists %}
             <div class="crawl_left">
-                <div class="crawling_img"></div>
+                <div class="crawling_img"><img src="{{ list['img'] }}" alt=" "></div>
             </div>
-            <div id="crawl_list">
-                {% for list in lists %}
-
-                    <div class="crawl_right">
-                        <div class="crawling_title">
-                            <a href="{{ list['url'] }}" target="_blank">
-                                {{ list['title'] }}
-                            </a>
-                        </div>
-                        <div class="crawling_content">{{ list['content'] }}</div>
-                        <div class="crawling_hashtag">{{ list['tag'] }}</div>
-                        <img src="{{ list['img'] }}" alt=" ">
+    {#            <div id="crawl_cup_list">#}
+                <div class="crawl_right">
+                    <div class="crawling_title">
+                        <a href="{{ list['url'] }}" target="_blank">
+                            {{ list['title'] }}
+                        </a>
                     </div>
+                    <div class="crawling_content">{{ list['content'] }}</div>
+                    <div class="crawling_hashtag">{{ list['tag'] }}</div>
+                </div>
 
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
+        <div id="crawl_upcycle_list">
+            {% for list in upcyclelists %}
+            <div class="crawl_left">
+                <div class="crawling_img"><img src="{{ list['img'] }}" alt=" "></div>
+            </div>
+    {#            <div id="crawl_cup_list">#}
+                <div class="crawl_right">
+                    <div class="crawling_title">
+                        <a href="{{ list['url'] }}" target="_blank">
+                            {{ list['title'] }}
+                        </a>
+                    </div>
+                    <div class="crawling_content">{{ list['content'] }}</div>
+                    <div class="crawling_hashtag">{{ list['tag'] }}</div>
+                </div>
+
+            {% endfor %}
+        </div>
+        <div id="crawl_glass_list">
+            {% for list in glasslists %}
+            <div class="crawl_left">
+                <div class="crawling_img"><img src="{{ list['img'] }}" alt=" "></div>
+            </div>
+    {#            <div id="crawl_cup_list">#}
+                <div class="crawl_right">
+                    <div class="crawling_title">
+                        <a href="{{ list['url'] }}" target="_blank">
+                            {{ list['title'] }}
+                        </a>
+                    </div>
+                    <div class="crawling_content">{{ list['content'] }}</div>
+                    <div class="crawling_hashtag">{{ list['tag'] }}</div>
+                </div>
+
+            {% endfor %}
+        </div>
+        <div id="crawl_clothes_list">
+            {% for list in clotheslists %}
+            <div class="crawl_left">
+                <div class="crawling_img"><img src="{{ list['img'] }}" alt=" "></div>
+            </div>
+    {#            <div id="crawl_cup_list">#}
+                <div class="crawl_right">
+                    <div class="crawling_title">
+                        <a href="{{ list['url'] }}" target="_blank">
+                            {{ list['title'] }}
+                        </a>
+                    </div>
+                    <div class="crawling_content">{{ list['content'] }}</div>
+                    <div class="crawling_hashtag">{{ list['tag'] }}</div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+
+
+
     </div>
     <div class="footer">
         <button class="review"></button>
