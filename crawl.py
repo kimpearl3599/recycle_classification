@@ -1,7 +1,7 @@
 import urllib
 from urllib.request import urlopen
 
-# from bson import ObjectId
+from bson import ObjectId
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 import certifi
 import requests
@@ -10,10 +10,11 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-ca = certifi.where()
-# client = MongoClient('mongodb+srv://test:sparta@cluster0.p2cn0.mongodb.net/Cluster0?retryWrites=true&w=majority')
-client = MongoClient('mongodb+srv://tmdgus5611:sparta@cluster0.rtjyu.mongodb.net/Cluster0?retryWrites=true&w=majority',
-                     tlsCAFile=ca)
+
+client = MongoClient('mongodb+srv://test:sparta@cluster0.uvimx.mongodb.net/Cluster0?retryWrites=true&w=majority',
+                     tlsCAFile=certifi.where())
+# client = MongoClient('mongodb+srv://tmdgus5611:sparta@cluster0.rtjyu.mongodb.net/Cluster0?retryWrites=true&w=majority',
+#                      tlsCAFile=ca)
 db = client.dbsparta
 
 # url title content hashtag를 크롤링 해온다. 없는 게시물은 보여주지 않음.
@@ -93,7 +94,6 @@ def crawling():
         glass_lists.append(glass_list)
         # print(lists)
 
-
     upcycling_url = 'https://search.naver.com/search.naver?sm=tab_sug.top&where=view&query=%EC%97%85%EC%82%AC%EC%9D%B4%ED%81%B4%EB%A7%81&oquery=%EC%B9%9C%ED%99%98%EA%B2%BD%EC%A0%9C%ED%92%88&tqi=hPvSDsp0YiRssv7ITo4sssssst0-473338&acq=djqtk&acr=1&qdt=0&mode=normal'
     upcycle_data = requests.get(upcycling_url, headers=headers)
 
@@ -117,13 +117,12 @@ def crawling():
             continue
 
         upcycle_list = {'url': url['href'],
-                      'title': url.text,
-                      'content': content,
-                      'tag': tag.text,
-                      'img': img['src']}
+                        'title': url.text,
+                        'content': content,
+                        'tag': tag.text,
+                        'img': img['src']}
 
         upcycling_lists.append(upcycle_list)
-
 
     clothes_url = 'https://search.naver.com/search.naver?where=view&sm=tab_jum&query=%ED%97%8C%EC%98%B7%EC%9E%AC%ED%99%9C%EC%9A%A9'
     clothes_data = requests.get(clothes_url, headers=headers)
@@ -155,13 +154,9 @@ def crawling():
 
         clothes_lists.append(clothes_list)
 
-
-
-
-
-
     # print(lists)
-    return render_template('crawling.html', cuplists=cup_lists, glasslists=glass_lists, upcyclelists=upcycling_lists, clotheslists=clothes_lists)
+    return render_template('crawling.html', cuplists=cup_lists, glasslists=glass_lists, upcyclelists=upcycling_lists,
+                           clotheslists=clothes_lists)
 
 
 # ---------------------------------------------------------------
