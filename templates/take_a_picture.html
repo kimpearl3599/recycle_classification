@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+    <title>WebRTC: Still photo capture demo</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="main.css" type="text/css" media="all">
+    <meta charset="UTF-8">
+    <title>지구나이 댓글 캠페인</title>
+
+    <meta property="og:title" content=""/>
+    <meta property="og:description" content=""/>
+    <meta property="og:image" content=""/>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+
+    <!--파비콘-->
+    <link rel=" shortcut icon" href="">
+    <link rel="icon" href="">
+
+    <!-- jQuery first, then Popper.js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../static/review.css">
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            font-size: 16px;
+            font-family: "Noto Sans CJK KR", "Roboto";
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+
+        }
+
+        .footer {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #canvas {
+            display: None;
+        }
+
+        #logo {
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #caution{
+            height: 50px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .camera {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            /*박스사이징: 패딩안겹치게*/
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .camera #video {
+            width: 100%;
+            border-radius: 10px;
+            border: 7px solid #BDBDBD;
+
+        }
+
+        #startbutton {
+            margin-top: 20px;
+            max-width: 80px;
+            width: 100%;
+            height: 33px;
+            font-size: 13px;
+            font-weight: 700;
+            background-color: #178ded;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+        }
+
+        #bottom-background{
+            width: 100%;
+            height: 250px;
+
+            background-image: url('https://i.ytimg.com/vi/A89H0tQoZsY/maxresdefault.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div id="logo">
+        <h1>L O G O</h1>
+    </div>
+    <div id="caution">
+        <h1>주변배경이 정돈된 곳에서 <br>쓰레기 사진을 찍어주세요</h1>
+    </div>
+    <div class="camera">
+        <video id="video">Video stream not available.</video>
+        <button id="startbutton">사진 촬영</button>
+    </div>
+    <canvas id="canvas">
+    </canvas>
+    <!--  <div class="output">-->
+    <!--    <img id="photo" alt="The screen capture will appear in this box.">-->
+    <!--  </div>-->
+    <div id="bottom-background">
+
+    </div>
+
+
+    <script src="../static/capture.js"></script>
+
+</div>
+</body>
+</html>
