@@ -29,8 +29,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="../static/review.css">
     <script>
         // 새로고침할때마다 Review list 보여주는 함수 실행
@@ -79,7 +81,7 @@
                     $('.review_list').empty()
 
                     let reviews = response['all_reviews']
-                    let counts = response['all_count']
+                    let counts = response['all_count']*10
                     console.log(counts)
                     let temp_html2 = `<div class="count_review">${counts}</div>`
 
@@ -103,7 +105,7 @@
                                         <div class="edit_btn ${id}_list_btn_group">
                                             <div style="display:none" class="pwd_group ${id}_confirm_btn_group">
                                                 <p>비밀번호</p>
-                                                <input id="${id}_confirm_pw_input" type="password" class="pwd_input" placeholder="입력했던 비밀번호로 수정 및 삭제가능">
+                                                <input id="${id}_confirm_pw_input" type="password" class="pwd_input" placeholder="비밀번호를 입력하세요.">
                                                 <button id="${id}_confirm_pw_btn" class="btn-xs btn_confirm_pw">확인</button>
                                             </div>
                                             <div class="updel_btn">
@@ -136,7 +138,7 @@
                 targetApi = "/api/update"
                 reviewEdit(id)
 
-            // type이 'delete'면 delete api로 연결하여 삭제진행
+                // type이 'delete'면 delete api로 연결하여 삭제진행
             } else if (type == "delete") {
                 targetApi = "/api/delete"
             }
@@ -192,26 +194,29 @@
 <div class="header">
     <button class="nav btn_camera"></button>
     <div id="logo"></div>
-    <button class="nav btn_menu_bar"></button>
+
 </div>
 <div class="container">
-    <div class="earth_img"></div>
-    <div class="count">
+    <div class="wrap">
+        <div class="earth_img"></div>
+        <div class="count">
 
+        </div>
+        <button class="btn btn_open_close" onclick="openclose()">접어두기</button>
+        <div class="review_box">
+            <input id="nickname" type="text" placeholder="nickname">
+            <input id="comment" type="text" placeholder="comment">
+            <input id="password" type="password" placeholder="password">
+            <button onclick="review_post()" class="btn review_post">댓글등록하기</button>
+        </div>
+
+
+        <div class="review_list">
+            <!--        temp_html 구현자리-->
+
+        </div>
     </div>
-    <button class="btn btn_open_close" onclick="openclose()">접어두기</button>
-    <div class="review_box">
-        <input id="nickname" type="text" placeholder="nickname">
-        <input id="comment" type="text" placeholder="comment">
-        <input id="password" type="password" placeholder="password">
-        <button onclick="review_post()" class="btn review_post">댓글등록하기</button>
-    </div>
 
-
-    <div class="review_list">
-        <!--        temp_html 구현자리-->
-
-    </div>
 </div>
 <div class="footer">
     <button class="nav review"></button>
