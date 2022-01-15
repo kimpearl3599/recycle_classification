@@ -2,8 +2,6 @@
 <html>
 <head>
     <title>WebRTC: Still photo capture demo</title>
-    <meta charset='utf-8'>
-    <link rel="stylesheet" href="main.css" type="text/css" media="all">
     <meta charset="UTF-8">
     <title>지구나이 댓글 캠페인</title>
 
@@ -28,114 +26,25 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="../static/review.css">
-
-
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            position: relative;
-            font-size: 16px;
-            font-family: "Noto Sans CJK KR", "Roboto";
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .header {
-            max-width: 600px;
-            width: 100%;
-            margin: 0 auto;
-
-        }
-
-        .footer {
-            max-width: 600px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        #canvas {
-            display: None;
-        }
-
-        #logo {
-            height: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        #caution{
-            height: 50px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .camera {
-            max-width: 600px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 40px;
-            /*박스사이징: 패딩안겹치게*/
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .camera #video {
-            width: 100%;
-            border-radius: 10px;
-            border: 7px solid #BDBDBD;
-
-        }
-
-        #startbutton {
-            margin-top: 20px;
-            max-width: 80px;
-            width: 100%;
-            height: 33px;
-            font-size: 13px;
-            font-weight: 700;
-            background-color: #178ded;
-            color: #ffffff;
-            border: none;
-            border-radius: 6px;
-        }
-
-        #bottom-background{
-            width: 100%;
-            height: 250px;
-
-            background-image: url('https://i.ytimg.com/vi/A89H0tQoZsY/maxresdefault.jpg');
-            background-position: center;
-            background-size: cover;
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="../static/camera.css">
+    <script src="../static/capture.js"></script>
 
 </head>
 
 <body>
 <div class="container">
-    <div id="logo">
-        <h1>L O G O</h1>
+    <div class="wrap">
+        <div class="main_img">
+        <div id="logo_main"></div>
     </div>
+
     <div id="caution">
-        <h1>주변배경이 정돈된 곳에서 <br>쓰레기 사진을 찍어주세요</h1>
+        <p>주변배경이 정돈된 곳에서</p>
+        <p>분리수거할 물건을 찍어주세요</p>
     </div>
     <div class="camera">
         <video id="video">Video stream not available.</video>
-        <button id="startbutton">사진 촬영</button>
+        <button id="startbutton" class="btn-s">사진 촬영</button>
     </div>
     <canvas id="canvas">
     </canvas>
@@ -145,9 +54,11 @@
     <div id="bottom-background">
 
     </div>
+    </div>
 
 
-    <script src="../static/capture.js"></script>
+
+
 
 </div>
 </body>
