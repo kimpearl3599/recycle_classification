@@ -122,23 +122,28 @@
             }
         }
 
+
+        function go_pic() {
+            window.location.href = '/'
+        }
+
         function go_review() {
-            window.location.reload()
+            window.location.href = '/review'
         }
 
         function go_crawling() {
-            window.location.href = '/search'
+            window.location.reload()
         }
 
         function go_category() {
-            window.location.href = '/search'
+            window.location.href = '/category'
         }
 
     </script>
 </head>
 <body>
 <div class="header top">
-    <button class="btn_camera nav"></button>
+    <button class="btn_camera nav" onclick="go_pic()"></button>
     <div id="logo"></div>
 </div>
 <div class="container">

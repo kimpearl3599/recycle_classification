@@ -2,7 +2,6 @@ import certifi
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 
-# python 3.7 이상 버젼에서 자체지원하는 bson 라이브러리로 ObjectId 활용시 필요
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
@@ -108,6 +107,7 @@ def review_delete():
     else:
         db.reviews.delete_one({'_id': ObjectId(id)})
         return jsonify({'msg': '삭제되었습니다.'})
+
 
 
 

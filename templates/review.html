@@ -58,7 +58,6 @@
             let comment = $('#comment').val()
             let password = $('#password').val()
 
-
             $.ajax({
                 type: 'POST',
                 url: '/api/review',
@@ -86,6 +85,7 @@
                     let temp_html2 = `<div class="count_review">${counts}</div>`
 
                     $('.count').append(temp_html2)
+
 
 
                     for (let i = 0; i < reviews.length; i++) {
@@ -126,6 +126,7 @@
         // 수정, 삭제 버튼을 review_update 버튼하나로 구현하여 타입을 다르게 지정하는 병렬제어 transac
         // 수정 혹은 삭제버튼을 클릭하면 비밀번호입력 버튼그룹이 숨어있다가 나타나게 설정
         function review_update(type, id) {
+
             let targetApi = ''
             if ($(`.${id}_confirm_btn_group`).is(':visible') == true) {
                 $(`.${id}_confirm_btn_group`).hide();
@@ -153,6 +154,7 @@
         // 확인버튼 클릭 시 수정된 comment와 입력한 pw값을 targetApi(어떤 버튼을 클릭했느냐에 따라 type이 달라짐)에 전달
         // 수정 및 삭제버튼 클릭 시 list를 새로고침하여 수정되거나 삭제된 상황이 반영될 수 있도록함
         function reviewEditTransac(id, targetApi) {
+
             let confirmPassword = $(`#${id}_confirm_pw_input`).val()
             let editComment = $(`#${id}_edit_area`).val()
             console.log(confirmPassword)
@@ -186,13 +188,27 @@
             }
 
         }
+        function go_pic() {
+            window.location.href = '/'
+        }
+        function go_review() {
+            window.location.href = '/review'
+        }
+        function go_crwaling() {
+            window.location.href = '/search'
+        }
+        function go_category() {
+            window.location.href = '/category'
+        }
+
+
 
     </script>
 
 </head>
 <body>
 <div class="header">
-    <button class="nav btn_camera"></button>
+    <button class="btn_camera nav" onclick="go_pic()"></button>
     <div id="logo"></div>
 
 </div>
@@ -219,9 +235,9 @@
 
 </div>
 <div class="footer">
-    <button class="nav review"></button>
-    <button class="nav crawling"></button>
-    <button class="nav category"></button>
+    <button class="review nav" onclick="go_review()"></button>
+    <button class="crawling nav" onclick="go_crwaling()"></button>
+    <button class="category nav" onclick="go_category()"></button>
 </div>
 </body>
 </html>
