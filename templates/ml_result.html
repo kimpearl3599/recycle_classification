@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="../static/capture.js">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +35,7 @@
 <link rel="stylesheet" href="../static/ml_result.css">
 
 
+
     <script>
         function go_pic() {
             window.location.href = '/'
@@ -49,18 +49,8 @@
         function go_category() {
             window.location.href = '/'
         }
-
     </script>
-<!--    <script >-->
-<!--        function method_info() {-->
-<!--            var user_area = resultt-->
-<!--            var img_src;-->
-<!--                if(user_area == i) {-->
-<!--                img_src = '../static/images/'+ i + '_class.jpg';-->
-<!--                }-->
-<!--            return img_src;-->
-<!--        }-->
-<!--    </script>-->
+
     </head>
     <body>
     <div class="header">
@@ -70,10 +60,10 @@
     <div class="container">
         <div class="wrap">
             <div class="result_img">
-                {{picpic}}
+                <img src="./static/img/object/{{ picpic }}">
             </div>
             <div class="result_category">
-                {{resultt}}
+                <p>{{resultt}}</p>
             </div>
             <div class="method_list" >
                 {% if resultt == '배터리' %}
@@ -101,7 +91,6 @@
                 {% elif resultt == '유리' %}
                     <div class="method_img bottle"></div>
                 {% endif %}
-<!--                <script>document.getElementById('method_img').src=method_info()</script>-->
             </div>
         </div>
     </div>

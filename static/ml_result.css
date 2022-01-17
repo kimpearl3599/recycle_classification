@@ -5,6 +5,16 @@ body {
     position: relative;
     font-size: 16px;
     font-family: "Noto Sans CJK KR", sans-serif , "Roboto", sans-serif; ;
+
+}
+#logo {
+    background-image: url('../static/images/logo.png');
+    width: 54px;
+    height: 54px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 6px;
 }
 .header {
     margin: 0 auto;
@@ -49,7 +59,6 @@ body {
     width: 85%;
     height: auto;
     margin: 0 auto;
-
 }
 input {
     max-width: 600px;
@@ -75,6 +84,7 @@ input {
     border: none;
     border-radius: 6px;
 }
+
 .btn-s {
     max-width: 80px;
     width: 100%;
@@ -86,6 +96,7 @@ input {
     border: none;
     border-radius: 6px;
 }
+
 .btn-xs {
     max-width: 50px;
     width: 100%;
@@ -97,6 +108,7 @@ input {
     border: none;
     border-radius: 6px;
 }
+
 .nav {
     width: 50px;
     height: 50px;
@@ -106,18 +118,11 @@ input {
     background-color: transparent;
     border: none;
 }
-#logo {
-    background-image: url('../static/images/logo.png');
-    width: 54px;
-    height: 54px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-right: 6px;
-}
+
 .header .btn_camera {
     background-image: url('../static/images/btn_camera.png');
 }
+
 .footer .review {
     background-image:  url('../static/images/btn_comment.png');
 }
@@ -127,20 +132,24 @@ input {
 .footer .category {
     background-image:  url('../static/images/recycle_squre.png');
 }
-.result_img {
+.result_img img{
     margin-top: 20px;
     border-radius: 6px;
     border: 4px solid #178ded;
-    width: auto;
-}
-.result_img img {
-    max-width: 400px;
+    max-width: 600px;
     width: 100%;
-    max-height: 300px;
+    max-height: 400px;
     height: 100%;
+    box-sizing: border-box;
 }
+
 .result_category {
+    width: 100%;
     text-align: center;
+
+
+}
+.result_category p{
     font-size: 18px;
     color: #178ded;
     box-sizing: border-box;
@@ -149,38 +158,40 @@ input {
     margin-top: 20px;
     padding-bottom: 20px;
     border-bottom: 2px solid #dbdbdb;
-}
-.method_list{
 
 }
-.method_img{
+.method_list {
+    max-width: 600px;
+    width: 100%;
+}
+.method_img {
     max-width: 600px;
     width: 100%;
     background-color: #fff;
     border-radius: 10px;
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: 0 center;
+    background-position: center 0;
 }
 .plastic {
     background-image: url('../static/images/plastic_class.jpg');
-    height: 600px;
+    height: 660px;
 }
 .paper {
     background-image: url('../static/images/paper_class.jpg');
-    height: 900px;
+    height: 1050px;
 }
 .battery {
     background-image: url('../static/images/battery_class.jpg');
-    height: 500px;
+    height: 560px;
 }
 .metal {
     background-image: url('../static/images/metal_class.jpg');
-    height: 600px;
+    height: 710px;
 }
 .box {
     background-image: url('../static/images/box_class.jpg');
-    height: 1000px;
+    height: 560px;
 }
 .cloth {
     background-image: url('../static/images/cloth_class.jpg');
@@ -188,17 +199,17 @@ input {
 }
 .shoes {
     background-image: url('../static/images/shoes_class.jpg');
-    height: 500px;
+    height: 560px;
 }
 .bottle {
     background-image: url('../static/images/glass_class.jpg');
-    height: 1150px;
+    height: 1320px;
 }
 .trash {
     background-image: url('../static/images/trash_class.jpg');
-    height: 500px;
+    height: 560px;
 }
 .bio {
     background-image: url('../static/images/bio_class.jpg');
-    height: 1100px;
+    height: 1280px;
 }

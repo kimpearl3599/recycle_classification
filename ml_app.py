@@ -56,8 +56,11 @@ def file_upload():
 def result():
 	  # 모델은 불러와져 있으니, 사용자가 올린 데이터를 predict 함수에 넣어주면 됨
 		# 이미지이기에, rescale 및 size 조정을 위해 ImageDataGenerator 활용
+    path = "./static/img/object"
+    file_list = os.listdir(path)
+    picpic = file_list[-1]
     test_datagen = ImageDataGenerator(rescale = 1./255)
-    test_dir = 'static/img'
+    test_dir = 'static/img/'
     test_generator = test_datagen.flow_from_directory(
             test_dir,
             # target_size 는 학습할때 설정했던 사이즈와 일치해야 함
@@ -69,7 +72,7 @@ def result():
             class_mode = None,
             batch_size = 12)
     pred = model.predict(test_generator)
-
+    print(test_datagen)
     # 마지막으로 업로드한 사진에 대한 판별결과를 보여줌
     # 이 부분은 어떤 서비스를 만들고자 하는지에 따라서 얼마든지 달라질 수 있음
     categories = {'배터리':0, '음식물쓰레기':1, '갈색병':2, '박스':3, '의류':4,
@@ -81,7 +84,7 @@ def result():
         if value == np.argmax(pred[-1]):
             result = key
 
-    return render_template('ml_result.html', resultt = result)
+    return render_template('ml_result.html', resultt = result, picpic=picpic)
 
 if __name__ == '__main__':
 
