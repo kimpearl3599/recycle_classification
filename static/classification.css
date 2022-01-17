@@ -228,7 +228,7 @@ input {
     width: 100%;
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: center;
+    background-position: 0 0;
 }
 .plastic {
     background-image: url('../static/images/plastic_class.jpg');
