@@ -1,4 +1,7 @@
-.idea/
+.idea
+.idea/*.xml
+*.iml
+
 static/model/recycle.h5
 
 # Created by https://www.toptal.com/developers/gitignore/api/python
