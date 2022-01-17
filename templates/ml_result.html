@@ -75,29 +75,31 @@
             <div class="result_category">
                 {{resultt}}
             </div>
-            <div class="method_img">
+            <div class="method_list" >
                 {% if resultt == '배터리' %}
-                    <img src="../static/images/battery_class.jpg">
+                    <div class="method_img battery"></div>
                 {% elif resultt == '음식물쓰레기' %}
-                    <img src="../static/images/bio_class.jpg">
+                    <div class="method_img bio"></div>
                 {% elif resultt == '갈색병' %}
-                    <img src="../static/images/glass_class.jpg">
+                    <div class="method_img bottle"></div>
                 {% elif resultt == '박스' %}
-                    <img src="../static/images/box_class.jpg">
+                    <div class="method_img box"></div>
                 {% elif resultt == '의류' %}
-                    <img src="../static/images/cloth_class.jpg">
+                    <div class="method_img cloth"></div>
                 {% elif resultt == '초록병' %}
-                    <img src="../static/images/glass_class.jpg">
+                    <div class="method_img bottle"></div>
                 {% elif resultt == '금속' %}
-                    <img src="../static/images/metal_class.jpg">
+                    <div class="method_img metal"></div>
                 {% elif resultt == '종이' %}
-                    <img src="../static/images/paper_class.jpg">
+                    <div class="method_img paper"></div>
                 {% elif resultt == '플라스틱' %}
-                    <img src="../static/images/plastic_class.jpg">
+                    <div class="method_img plastic"></div>
                 {% elif resultt == '신발' %}
-                    <img src="../static/images/shoes_class.jpg">
+                    <div class="method_img shoes"></div>
                 {% elif resultt == '일반쓰레기' %}
-                    <img src="../static/images/trash_class.jpg">
+                    <div class="method_img trash"></div>
+                {% elif resultt == '유리' %}
+                    <div class="method_img bottle"></div>
                 {% endif %}
 <!--                <script>document.getElementById('method_img').src=method_info()</script>-->
             </div>

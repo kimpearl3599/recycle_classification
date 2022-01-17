@@ -22,7 +22,7 @@ body {
 
 }
 .footer {
-     position: fixed;
+    position: fixed;
     z-index: 10;
     bottom: 0;
     box-sizing: border-box;
@@ -49,9 +49,6 @@ body {
     width: 85%;
     height: auto;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
 }
 input {
@@ -135,21 +132,13 @@ input {
     border-radius: 6px;
     border: 4px solid #178ded;
     width: auto;
-    max-width: 400px;
-    width: 100%;
-    max-height: 300px;
-    height: 100%;
+}
+.result_img img {
     max-width: 400px;
     width: 100%;
     max-height: 300px;
     height: 100%;
 }
-/*.result_img img {*/
-/*    max-width: 400px;*/
-/*    width: 100%;*/
-/*    max-height: 300px;*/
-/*    height: 100%;*/
-/*}*/
 .result_category {
     text-align: center;
     font-size: 18px;
@@ -161,14 +150,55 @@ input {
     padding-bottom: 20px;
     border-bottom: 2px solid #dbdbdb;
 }
-.method_img {
-    max-width: 300px;
-    width: 10%;
-    height: 300px;
+.method_list{
+
+}
+.method_img{
+    max-width: 600px;
+    width: 100%;
     background-color: #fff;
     border-radius: 10px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: 0 center;
-
+}
+.plastic {
+    background-image: url('../static/images/plastic_class.jpg');
+    height: 600px;
+}
+.paper {
+    background-image: url('../static/images/paper_class.jpg');
+    height: 900px;
+}
+.battery {
+    background-image: url('../static/images/battery_class.jpg');
+    height: 500px;
+}
+.metal {
+    background-image: url('../static/images/metal_class.jpg');
+    height: 600px;
+}
+.box {
+    background-image: url('../static/images/box_class.jpg');
+    height: 1000px;
+}
+.cloth {
+    background-image: url('../static/images/cloth_class.jpg');
+    height: 500px;
+}
+.shoes {
+    background-image: url('../static/images/shoes_class.jpg');
+    height: 500px;
+}
+.bottle {
+    background-image: url('../static/images/glass_class.jpg');
+    height: 1150px;
+}
+.trash {
+    background-image: url('../static/images/trash_class.jpg');
+    height: 500px;
+}
+.bio {
+    background-image: url('../static/images/bio_class.jpg');
+    height: 1100px;
 }
