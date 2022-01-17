@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../static/capture.js">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지구나이 댓글 캠페인</title>
+
+<meta property="og:title" content=""/>
+<meta property="og:description" content=""/>
+<meta property="og:image" content=""/>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+
+<!--파비콘-->
+<link rel=" shortcut icon" href="">
+<link rel="icon" href="">
+
+<!-- jQuery first, then Popper.js-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" href="../static/ml_result.css">
+
+
+    <script>
+        function go_pic() {
+            window.location.href = '/'
+        }
+        function go_review() {
+            window.location.href = '/'
+        }
+        function go_crwaling() {
+            window.location.href = '/'
+        }
+        function go_category() {
+            window.location.href = '/'
+        }
+
+    </script>
+<!--    <script >-->
+<!--        function method_info() {-->
+<!--            var user_area = resultt-->
+<!--            var img_src;-->
+<!--                if(user_area == i) {-->
+<!--                img_src = '../static/images/'+ i + '_class.jpg';-->
+<!--                }-->
+<!--            return img_src;-->
+<!--        }-->
+<!--    </script>-->
+    </head>
+    <body>
+    <div class="header">
+        <button class="btn_camera nav" onclick="go_pic()"></button>
+        <div id="logo"></div>
+    </div>
+    <div class="container">
+        <div class="wrap">
+            <div class="result_img">
+                {{picpic}}
+            </div>
+            <div class="result_category">
+                {{resultt}}
+            </div>
+            <div class="method_img">
+                {% if resultt == '배터리' %}
+                    <img src="../static/images/battery_class.jpg">
+                {% elif resultt == '음식물쓰레기' %}
+                    <img src="../static/images/bio_class.jpg">
+                {% elif resultt == '갈색병' %}
+                    <img src="../static/images/glass_class.jpg">
+                {% elif resultt == '박스' %}
+                    <img src="../static/images/box_class.jpg">
+                {% elif resultt == '의류' %}
+                    <img src="../static/images/cloth_class.jpg">
+                {% elif resultt == '초록병' %}
+                    <img src="../static/images/glass_class.jpg">
+                {% elif resultt == '금속' %}
+                    <img src="../static/images/metal_class.jpg">
+                {% elif resultt == '종이' %}
+                    <img src="../static/images/paper_class.jpg">
+                {% elif resultt == '플라스틱' %}
+                    <img src="../static/images/plastic_class.jpg">
+                {% elif resultt == '신발' %}
+                    <img src="../static/images/shoes_class.jpg">
+                {% elif resultt == '일반쓰레기' %}
+                    <img src="../static/images/trash_class.jpg">
+                {% endif %}
+<!--                <script>document.getElementById('method_img').src=method_info()</script>-->
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <button class="review nav" onclick="go_review()"></button>
+        <button class="crawling nav" onclick="go_crwaling()"></button>
+        <button class="category nav" onclick="go_category()"></button>
+    </div>
+</body>
+</html>
