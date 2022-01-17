@@ -3,6 +3,7 @@
   // width to the value defined here, but the height will be
   // calculated based on the aspect ratio of the input stream.
 
+
   var width = 480;    // We will scale the photo width to this
   var height = 360;     // This will be computed based on the input stream
 
@@ -19,13 +20,23 @@
   var photo = null;
   var startbutton = null;
 
+
+// 카메라 구동 부분
+
+
+
+
   function startup() {
     video = document.getElementById('video');
     canvas = document.getElementById('canvas');
     photo = document.getElementById('photo');
     startbutton = document.getElementById('startbutton');
 
+
+    navigator.mediaDevices.getUserMedia({video: true})
+
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
+
     .then(function(stream) {
       video.srcObject = stream;
       video.play();
@@ -63,7 +74,11 @@
 
   // Fill the photo with an indication that none has been
   // captured.
+
+
+
   //
+
   // function clearphoto() {
   //   var context = canvas.getContext('2d');
   //   context.fillStyle = "#AAA";
@@ -71,6 +86,10 @@
   //
   //   var data = canvas.toDataURL('image/png');
   //   photo.setAttribute('src', data);
+
+  //
+
+
   // }
 
   // Capture a photo by fetching the current contents of the video
@@ -85,6 +104,49 @@
       canvas.width = width;
       canvas.height = height;
       context.drawImage(video, 0, 0, width, height);
+
+
+      var url_data = canvas.toDataURL('image/png');
+      picpic = dataURLtoFile(url_data, 'data.png')
+      let form_data = new FormData()
+
+      form_data.append("file_give", picpic)
+
+      $.ajax({
+          type: "POST",
+          url: "/fileupload",
+          data: form_data,
+          cache: false,
+          contentType: false,
+          processData: false,
+          success: function (response) {
+              alert(response["result"])
+              // 아래처럼 하지 않아도, 백엔드(ml_app.py)에서 바로 판별 함수를 실행한 뒤에
+              // render_template 을 해서 바로 결과 페이지로 넘어가도 됨
+              window.location.href='/result'
+
+          }
+      });
+      }
+    // else {
+      //   clearphoto();
+      // }
+
+  }
+    function dataURLtoFile(dataurl, filename) {
+      var arr = dataurl.split(','),
+          mime = arr[0].match(/:(.*?);/)[1],
+          bstr = window.atob(arr[1]),
+          n = bstr.length,
+          u8arr = new Uint8Array(n);
+      while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new File([u8arr], filename, {
+          type: mime
+      });
+    }
+
       // console.log(context)
 
       var url_data = canvas.toDataURL('image/png');
@@ -126,6 +188,7 @@ function CheckImagefiles(fileName) {
     });
     return result;
 }
+
 
 
   // Set up our event listener to run the startup process
