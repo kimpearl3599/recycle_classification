@@ -109,6 +109,9 @@ kaggle 데이터를 활용한 분리수거물 분류사이트
 ![image](https://user-images.githubusercontent.com/79038451/149770825-9df48fe6-e010-4965-ad17-9ea8bcea1d7b.png)
 ![image](https://user-images.githubusercontent.com/79038451/149770857-999fed27-64c5-48b5-baf7-7cd252970224.png)
 
+## Workflow
+![image](https://user-images.githubusercontent.com/79038451/149875822-13c638b5-4648-44de-a110-487e151497d3.png)
+
 
 
 
