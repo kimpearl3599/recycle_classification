@@ -13,7 +13,7 @@ kaggle 데이터를 활용한 분리수거물 분류사이트
 [시연 영상](https://www.youtube.com/channel/UCEeXdrIiAburLI6yATNsE2Q/featured) 👈 link
 
 ### 개발기간
-22.01.12(화) ~ 22.01.18(월)
+22.01.12(수) ~ 22.01.18(화)
 7일간(기획 1일, 개발 6일)
 
 ### 전체일정 프로세스
