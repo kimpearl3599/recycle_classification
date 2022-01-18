@@ -35,9 +35,11 @@
           rel="stylesheet">
     <link rel="stylesheet" href="../static/review.css">
     <script>
+
         // 새로고침할때마다 Review list 보여주는 함수 실행
         $(document).ready(function () {
             show_review()
+            $('.count').empty()
         })
 
         // 응원댓글작성 <-> 접어두기
@@ -83,7 +85,7 @@
                     let counts = response['all_count']*10
                     console.log(counts)
                     let temp_html2 = `<div class="count_review">${counts}</div>`
-
+                    $('.count').empty()
                     $('.count').append(temp_html2)
 
 
