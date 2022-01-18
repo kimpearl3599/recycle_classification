@@ -10,7 +10,7 @@ kaggle 데이터를 활용한 분리수거물 분류사이트
 이 서비스는 분리수거가 잘되지 않고 있는 현재 분리수거를 더 잘할 수 있도록 도와주는 머신러닝 기능과 커뮤니티의 댓글기능을 통해 지구를 정화시키는 데 도움이 되고자 하는 마음으로 
 만든 서비스입니다.
 <br>
-[시연 영상](https://www.youtube.com/watch?v=gKp9Z7L4Ags) 👈 link
+[시연 영상](https://www.youtube.com/channel/UCEeXdrIiAburLI6yATNsE2Q/featured) 👈 link
 
 ### 개발기간
 21.12.28(화) ~ 21.01.03(월)
