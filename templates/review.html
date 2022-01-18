@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>지구나이 댓글 캠페인</title>
+    <title>지구오래오래 댓글 캠페인</title>
 
     <meta property="og:title" content=""/>
     <meta property="og:description" content=""/>
@@ -66,7 +66,6 @@
                 data: {'nickname_give': nickname, 'comment_give': comment, 'password_give': password},
                 success: function (response) {
                     alert(response['msg']);
-                    alert("댓글 작성 완료");
                     window.location.reload()
                 }
             })

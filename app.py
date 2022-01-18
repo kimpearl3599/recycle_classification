@@ -105,7 +105,7 @@ def save_review():
     }
     db.reviews.insert_one(doc)
 
-    return jsonify({'msg': '후기가 등록완료되었습니다.'})
+    return jsonify({'msg': '응원댓글 작성이 완료되었습니다.'})
 
 
 # review 보여주기
