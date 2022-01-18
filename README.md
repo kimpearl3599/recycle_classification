@@ -110,7 +110,7 @@ kaggle 데이터를 활용한 분리수거물 분류사이트
 ![image](https://user-images.githubusercontent.com/79038451/149770857-999fed27-64c5-48b5-baf7-7cd252970224.png)
 
 ## Workflow
-![image](https://user-images.githubusercontent.com/79038451/149875822-13c638b5-4648-44de-a110-487e151497d3.png)
+![image](https://user-images.githubusercontent.com/79038451/149876685-e4d8f0e7-9f2d-41af-b2ab-1cf26937bb01.png)
 
 
 
